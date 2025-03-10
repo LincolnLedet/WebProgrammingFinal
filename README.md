@@ -7,4 +7,5 @@ A simple **Next.js** project that uses Vite.
    ```sh
    git clone https://github.com/LincolnLedet/WebProgrammingFinal.git
    cd WebProgrammingFinal
+   npm install
    npm run dev
