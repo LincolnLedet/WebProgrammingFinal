@@ -1,10 +1,34 @@
+'use client'
 import Image from "next/image";
+
 import styles from "./page.module.css";
 
+import { useState } from 'react';
+
+
+
 export default function Home() {
+  const [msg, setMsg] = useState("");
+
+  const pingDB = async () => {
+    setMsg("Pinging...");
+    try {
+      const res = await fetch("/api/ping");
+      const data = await res.json();
+      setMsg(data.msg || data.error);
+    } catch (err) {
+      console.log(err);
+      setMsg("❌ Failed to reach server");
+    }
+  };
+
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        <p> This button pings the mongo db database. If it is not working for you please make sure you have ur .env.local file set up. Look at the discord</p>
+        <button onClick ={pingDB}> Ping</button>
+        <p>{msg}</p>
 
         <ol>
           <li>
