@@ -4,16 +4,17 @@ import styles from "./page.module.css";
 export default function Home() {
   return (
     <div className={styles.page}>
+      <header className={styles.header}>
+        <h1>DAWGIFY</h1>
+      </header>
+    
       <main className={styles.main}>
-
         <ol>
           <li>
-            Hey, Welcome the the CS project <code>src/app/page.tsx</code>.
+            Hey, Welcome to the CS project <code>src/app/page.tsx</code>.
           </li>
           <li>What is craking my slimes</li>
         </ol>
-
-
       </main>
       <footer className={styles.footer}>
         <a
