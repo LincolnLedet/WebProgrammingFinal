@@ -34,7 +34,7 @@ export default function Home() {
           <li>
             Hey, Welcome the the CS project <code>src/app/page.tsx</code>.
           </li>
-          <li>What is craking my slimes</li>
+          <li>What is cranking my slimes</li>
         </ol>
 
 
