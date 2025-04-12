@@ -1,0 +1,24 @@
+.main_body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#dawgify {
+    font-size: 40pt;
+    color: black;
+    font-weight: bolder;
+}
+
+.links {
+    display: flex;
+    font-size: x-large;
+    gap: 8px;
+    font-weight: bold;
+    margin-right: 40px;
+}
+
+.link {
+
+}

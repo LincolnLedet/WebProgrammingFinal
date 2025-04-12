@@ -1,0 +1,104 @@
+.main_body {
+    background-image: linear-gradient(rgb(205, 57, 57), rgb(178, 178, 178), black);
+}
+
+.main_body hr {
+    color: #000; /* IDK how to make this wider */
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 35vw;
+    height: 20vh;
+    background-color: green;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+.card_holder {
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.left_half {
+    width: 34vw;
+}
+
+.right_half {
+    width: 66vw;
+}
+
+.playlist_card {
+    background-image: linear-gradient(rgb(237, 47, 47), black);
+    border-radius: 20px;
+    width: 95%;
+    height: 70vh;
+    margin-left: 30px;
+}
+
+.title_section {
+    display: flex;
+    justify-content: space-around;
+}
+
+.title_section div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#playlist_picture {
+    border-radius: 20px;
+}
+
+.song_section {
+
+}
+
+.song_component {
+    display: flex;
+}
+
+.song_component div {
+    display: flex;
+    background-color: aliceblue;
+    margin: 10px;
+    border-radius: 20px;
+    color: black;
+}
+
+.song_component p {
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+}
+
+.song_picture {
+    border-radius: 20px;
+}
+
+.music_tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.text_in_image {
+    position: absolute;
+    bottom: 43%;
+    left: 39%;
+    font-size: x-large;
+    font-weight: 900;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}

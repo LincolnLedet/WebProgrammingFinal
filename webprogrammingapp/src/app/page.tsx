@@ -2,6 +2,7 @@
 import Image from "next/image";
 
 import styles from "./page.module.css";
+import WebUserHome from "./home/Home"
 
 import { useState } from 'react';
 
@@ -24,6 +25,11 @@ export default function Home() {
 
 
   return (
+    <div>
+      <WebUserHome/>
+    </div>
+  )
+  /*(
     <div className={styles.page}>
       <main className={styles.main}>
         <p> This button pings the mongo db database. If it is not working for you please make sure you have ur .env.local file set up. Look at the discord</p>
@@ -84,5 +90,5 @@ export default function Home() {
         </a>
       </footer>
     </div>
-  );
+  );*/
 }
