@@ -14,7 +14,7 @@ export default function Home() {
 
     return (
         <div className={styles.main_body}>
-            <TopBar isLoggedIn={isLoggedIn} title={"DAWGIFY"}/>
+            <TopBar isLoggedIn={isLoggedIn} title={"DAWGIFY"} changeLogStatus={setIsLoggedIn}/>
             <hr></hr>
             <section className={styles.body}>
                 <div className={styles.get_started}>

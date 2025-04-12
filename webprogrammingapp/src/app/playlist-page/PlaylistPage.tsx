@@ -1,9 +1,10 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './playlistPage.module.css'
 import TopBar from '../components/TopBar'
 import Image, { StaticImageData } from 'next/image';
 import temp from '../images/tempG.png'
+import { useRouter } from 'next/navigation'
 
 interface Song {
     id: number,
@@ -14,6 +15,13 @@ interface Song {
 }
 
 export default function PlaylistPage() {
+    const router = useRouter();
+    const [isLoggedIn, setIsLoggedIn] = useState(true)
+    useEffect(()=> {
+        if (!isLoggedIn) {
+            router.push('/home')
+        }
+    }, [isLoggedIn])
 
     const user = "Me"
 
@@ -37,7 +45,7 @@ export default function PlaylistPage() {
 
     return (
         <div className={styles.main_body}>
-            <TopBar isLoggedIn={true} title={"DAWGIFY"}/>
+            <TopBar isLoggedIn={true} title={"DAWGIFY"} changeLogStatus={setIsLoggedIn}/>
             <hr></hr>
             <section className={styles.body}>
                 <div className={styles.left_half}> 
@@ -86,8 +94,8 @@ export default function PlaylistPage() {
                         <div className={styles.song_section}>
                             {playlistSongs.length > 0 ? (
                                 playlistSongs.map((song:Song) => (
-                                    <div className={styles.song_component}>
-                                        <div className={styles.song} key={song.id}>
+                                    <div className={styles.song_component} key={song.id}>
+                                        <div className={styles.song}>
                                             <Image
                                                 src={song.albumPicture}
                                                 height={70}

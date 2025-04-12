@@ -16,7 +16,6 @@
 .card {
     width: 35vw;
     height: 20vh;
-    background-color: green;
     border: 3px solid black;
     border-radius: 10px;
 }

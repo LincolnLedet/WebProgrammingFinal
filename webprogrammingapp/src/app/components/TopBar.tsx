@@ -4,11 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import temp from '../images/tempG.png'
 
-const TopBar = ({isLoggedIn, title} : {isLoggedIn:boolean, title:string}) => {
+const TopBar = ({isLoggedIn, title, changeLogStatus} : {isLoggedIn:boolean, title:string, changeLogStatus:(x:boolean) => void}) => {
 
     const notLoggedIn = (
         <div className={styles.links}>
-                <Link
+                {/*<Link
                     href={{
                         pathname: '/seat-selection',
                         query: {},
@@ -16,11 +16,12 @@ const TopBar = ({isLoggedIn, title} : {isLoggedIn:boolean, title:string}) => {
                     className={styles.link}
                 >
                     Login
-                </Link>
+                </Link>*/}
+                <p onClick={()=>changeLogStatus(true)} className={styles.p_link}> Login </p>
                 <p>|</p>
                 <Link
                     href={{
-                        pathname: '/seat-selection',
+                        pathname: '/register',
                         query: {},
                     }}
                     className={styles.link}
@@ -34,7 +35,7 @@ const TopBar = ({isLoggedIn, title} : {isLoggedIn:boolean, title:string}) => {
         <div className={styles.links}>
                 <Link
                     href={{
-                        pathname: '/seat-selection',
+                        pathname: '/profile',
                         query: {},
                     }}
                     className={styles.link}
@@ -42,7 +43,7 @@ const TopBar = ({isLoggedIn, title} : {isLoggedIn:boolean, title:string}) => {
                     My Account
                 </Link>
                 <p>|</p>
-                <Link
+                {/*<Link
                     href={{
                         pathname: '/seat-selection',
                         query: {},
@@ -50,7 +51,8 @@ const TopBar = ({isLoggedIn, title} : {isLoggedIn:boolean, title:string}) => {
                     className={styles.link}
                 >
                     Logout
-                </Link>
+                </Link>*/}
+                <p onClick={()=>changeLogStatus(false)} className={styles.p_link}> Logout </p>
             </div>
     )
 
