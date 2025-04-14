@@ -29,7 +29,7 @@ export default function Profile() {
         let playlist = {
             id: i,
             name:"Playlist " + i,
-            picture: temp.src
+            picture: study.src
         }
         defaultUserPlaylists.push(playlist)
     }
@@ -65,8 +65,9 @@ export default function Profile() {
             id: userPlaylists.length,
             name: name,
             picture: pictureSrc
-        })
-        setUserPlaylists(oldToNew)
+        });
+        setUserPlaylists(oldToNew);
+        setIsOpened(false);
     }
 
     return (
@@ -101,7 +102,7 @@ export default function Profile() {
                         userPlaylists.map((playlist:Playlist) => (
                             <li className={styles.card_holder} key={playlist.id} onClick={() => router.push('playlist-page')}>
                                 <Image
-                                    src={study}
+                                    src={playlist.picture}
                                     height={height}
                                     width={width}
                                     alt="Study Music button"
