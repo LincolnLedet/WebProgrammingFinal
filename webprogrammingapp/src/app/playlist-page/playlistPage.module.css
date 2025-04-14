@@ -1,9 +1,14 @@
 .main_body {
-    background-image: linear-gradient(rgb(205, 57, 57), rgb(178, 178, 178), black);
+    background-image: linear-gradient(rgb(134, 28, 28), rgb(178, 178, 178), black);
 }
 
 .main_body hr {
-    color: #000; /* IDK how to make this wider */
+    color: black;
+    border: none;
+    border-top: 3px solid black;
+    width: 100%;
+    margin: 0 auto;
+
 }
 
 .body {
@@ -36,10 +41,11 @@
 }
 
 .playlist_card {
-    background-image: linear-gradient(rgb(237, 47, 47), black);
+    background-image: linear-gradient(rgb(140, 59, 59), rgb(89, 30, 30), black);
     border-radius: 20px;
     width: 95%;
     height: 70vh;
+    margin-top: 30px;
     margin-left: 30px;
 }
 
@@ -61,20 +67,49 @@
 
 .song_section {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.song {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    margin-right: 10px;
 }
 
 .song_component {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 70%;
+    margin-bottom: 10px;
+    background-color: #C1D5CF;
+    border-radius: 20px;
+    padding: 10px;
+    height: 45px;
+    color: black;
+}
+
+.song_component button {
+    flex-shrink: 0;
+    width: 50px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: black;
+    border-style: black 10px;
 }
 
 .song_component div {
-    display: flex;
-    background-color: aliceblue;
-    margin: 10px;
-    border-radius: 20px;
-    color: black;
+    background-color: transparent;
+    margin: 0;
 }
 
 .song_component p {
@@ -88,6 +123,8 @@
 
 .song_picture {
     border-radius: 20px;
+    width: 100px;
+    margin-bottom: 25px;
 }
 
 .music_tabs {
@@ -103,4 +140,35 @@
     font-weight: 900;
     color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.spotify_connect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.spotify_text {
+    color: black;
+    text-align: center;
+    font-size: 16px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.spotify_button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.searchbar {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

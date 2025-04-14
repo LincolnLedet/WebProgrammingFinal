@@ -3,6 +3,7 @@ import styles from './topBar.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import temp from '../images/tempG.png'
+import dawglogo from '../images/dawglogo.png'
 
 const TopBar = ({isLoggedIn, title, changeLogStatus} : {isLoggedIn:boolean, title:string, changeLogStatus:(x:boolean) => void}) => {
 
@@ -60,9 +61,9 @@ const TopBar = ({isLoggedIn, title, changeLogStatus} : {isLoggedIn:boolean, titl
         <div className={styles.main_body}>
             <Link href="/about-page">
                 <Image
-                    src={temp}
-                    height={100}
-                    width={100}
+                    src={dawglogo}
+                    height={80}
+                    width={120}
                     alt="Dawgify about page button"
                 />
             </Link>

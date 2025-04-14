@@ -5,6 +5,13 @@ import TopBar from '../components/TopBar'
 import Image from 'next/image';
 import { useRouter } from 'next/navigation'
 import temp from '../images/tempG.png'
+import workout from '../images/workoutmusic.png'
+import gameday from '../images/ugagameday.png'
+import study from '../images/studymusic.png'
+import studying from '../images/studyingmusic.png'
+import club from '../images/clubmusic.jpg'
+import walking from '../images/walkingmusic.png'
+import dawglogo from '../images/dawglogo.png'
 
 interface Playlist {
     id: number,
@@ -90,7 +97,7 @@ export default function Profile() {
                         userPlaylists.map((playlist:Playlist) => (
                             <li className={styles.card_holder} key={playlist.id} onClick={() => router.push('playlist-page')}>
                                 <Image
-                                    src={playlist.picture}
+                                    src={study}
                                     height={height}
                                     width={width}
                                     alt="Study Music button"

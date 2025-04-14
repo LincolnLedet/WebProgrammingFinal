@@ -4,6 +4,13 @@ import styles from './home.module.css'
 import TopBar from '../components/TopBar'
 import Image from 'next/image';
 import temp from '../images/tempG.png'
+import workout from '../images/workoutmusic.png'
+import gameday from '../images/ugagameday.png'
+import study from '../images/studymusic.png'
+import studying from '../images/studyingmusic.png'
+import club from '../images/clubmusic.jpg'
+import walking from '../images/walkingmusic.png'
+import dawglogo from '../images/dawglogo.png'
 
 export default function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -18,12 +25,12 @@ export default function Home() {
             <hr></hr>
             <section className={styles.body}>
                 <div className={styles.get_started}>
-                    <p className={styles.text_in_image}> Get Started </p>
+                    <p className={styles.get_started_text_image}> Get Started </p>
                 </div>
                 <div className={styles.music_tabs}> 
                     <div className={styles.card_holder}>
                         <Image
-                            src={temp}
+                            src={studying}
                             height={height}
                             width={width}
                             alt="Study Music button"
@@ -33,7 +40,7 @@ export default function Home() {
                     </div>
                     <div className={styles.card_holder}>
                         <Image
-                            src={temp}
+                            src={study}
                             height={height}
                             width={width}
                             alt="Study Music button"
@@ -43,7 +50,7 @@ export default function Home() {
                     </div>
                     <div className={styles.card_holder}>
                         <Image
-                            src={temp}
+                            src={walking}
                             height={height}
                             width={width}
                             alt="Walking Music button"
@@ -53,7 +60,7 @@ export default function Home() {
                     </div>
                     <div className={styles.card_holder}>
                         <Image
-                            src={temp}
+                            src={gameday}
                             height={height}
                             width={width}
                             alt="Game Day Tunes button"
@@ -63,7 +70,7 @@ export default function Home() {
                     </div>
                     <div className={styles.card_holder}>
                         <Image
-                            src={temp}
+                            src={workout}
                             height={height}
                             width={width}
                             alt="Workout Music button"
@@ -73,7 +80,7 @@ export default function Home() {
                     </div>
                     <div className={styles.card_holder}>
                         <Image
-                            src={temp}
+                            src={club}
                             height={height}
                             width={width}
                             alt="Club Music button"

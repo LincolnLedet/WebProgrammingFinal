@@ -5,6 +5,8 @@ import TopBar from '../components/TopBar'
 import Image, { StaticImageData } from 'next/image';
 import temp from '../images/tempG.png'
 import { useRouter } from 'next/navigation'
+import albumcover from '../images/albumcover.png'
+import spotify from '../images/SpotifyConnect.png'
 
 interface Song {
     id: number,
@@ -32,7 +34,7 @@ export default function PlaylistPage() {
             name:"Song " + i,
             album: "Ur Mom",
             artist: "Me",
-            albumPicture: temp
+            albumPicture: albumcover,
         }
         defaultPlaylistSongs.push(song)
     }
@@ -50,8 +52,15 @@ export default function PlaylistPage() {
             <section className={styles.body}>
                 <div className={styles.left_half}> 
                     <div className={styles.spotify_connect}>
-                        <p> Press to connect Spotify Account </p>
-                        <button> Spotify </button>
+                        <p className={styles.spotify_text}>Press to connect to Spotify</p>
+                        <button className={styles.spotify_button}>
+                            <Image
+                                src={spotify}
+                                alt="Connect to Spotify"
+                                width={300}
+                                height={100}
+                            />
+                        </button>
                     </div>
                     <div className={styles.searchbar}>
                         <button></button> {/** Put search icon here */}
@@ -79,7 +88,7 @@ export default function PlaylistPage() {
                     <div className={styles.playlist_card}>
                         <div className={styles.title_section}>
                             <Image
-                                src={temp}
+                                src={albumcover}
                                 height={180}
                                 width={180}
                                 alt={"Playlist picture"}
