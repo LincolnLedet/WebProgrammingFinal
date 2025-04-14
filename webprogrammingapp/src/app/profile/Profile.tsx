@@ -71,20 +71,24 @@ export default function Profile() {
 
     return (
         <div className={styles.main_body}>
-            <dialog ref={ref} className={styles.d_body}>
-                <section className={styles.modal_button}>
-                    <button onClick={() => setIsOpened(false)}> X </button>
-                </section>
-                <h1> Add Playlist </h1>
-                <section className={styles.playlist_form}>
-                    <form onSubmit={handleSubmit}>
-                        <h2 className={styles.headers}>Playlist Name</h2>
-                        <input value={name} onChange={(e) => setName(e.target.value)} className={styles.text_fields} required />
-                        <h2 className={styles.headers}>Playlist Photo (URL)</h2>
-                        <input value={pictureSrc} onChange={(e) => setPictureSrc(e.target.value)} className={styles.text_fields} required />
-                        <button type='submit'> Submit</button>
-                    </form>
-                </section>
+            <dialog ref={ref} className={styles.dialog}>
+                <div className={styles.modal_body}>
+                    <section className={styles.modal_button}>
+                        <button onClick={() => setIsOpened(false)}> X </button>
+                    </section>
+                    <h1> Add Playlist </h1>
+                    <section className={styles.playlist_form}>
+                        <form onSubmit={handleSubmit}>
+                            <div>
+                                <h2 className={styles.headers}>Playlist Name</h2>
+                                <input value={name} onChange={(e) => setName(e.target.value)} className={styles.text_fields} required />
+                                <h2 className={styles.headers}>Playlist Photo (URL)</h2>
+                                <input value={pictureSrc} onChange={(e) => setPictureSrc(e.target.value)} className={styles.text_fields} required />
+                            </div>
+                            <button type='submit' > Submit</button>
+                        </form>
+                    </section>
+                </div>
             </dialog>
             <TopBar isLoggedIn={true} title={"YOUR PLAYLISTS"} changeLogStatus={setIsLoggedIn}/>
             <hr></hr>
