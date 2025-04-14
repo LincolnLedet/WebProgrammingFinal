@@ -11,6 +11,8 @@ import studying from '../images/studyingmusic.png'
 import club from '../images/clubmusic.jpg'
 import walking from '../images/walkingmusic.png'
 import dawglogo from '../images/dawglogo.png'
+import Link from 'next/link';
+
 
 export default function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,10 +26,9 @@ export default function Home() {
             <TopBar isLoggedIn={isLoggedIn} title={"DAWGIFY"} changeLogStatus={setIsLoggedIn}/>
             <hr></hr>
             <section className={styles.body}>
-                <div className={styles.get_started}>
-                    <p className={styles.get_started_text_image}> Get Started </p>
-                </div>
+                
                 <div className={styles.music_tabs}> 
+                <Link href = "/playlistsGenre/study">
                     <div className={styles.card_holder}>
                         <Image
                             src={studying}
@@ -38,6 +39,8 @@ export default function Home() {
                         />
                         <p className={styles.text_in_image}> Study Music </p>
                     </div>
+                    </Link>
+                    <Link href = "/playlistsGenre/study">
                     <div className={styles.card_holder}>
                         <Image
                             src={study}
@@ -48,6 +51,8 @@ export default function Home() {
                         />
                         <p className={styles.text_in_image}> Study Music </p>
                     </div>
+                    </Link>
+                    <Link href = "/playlistsGenre/walking">
                     <div className={styles.card_holder}>
                         <Image
                             src={walking}
@@ -58,6 +63,9 @@ export default function Home() {
                         />
                         <p className={styles.text_in_image}> Walking Music </p>
                     </div>
+                    </Link>
+                    <Link href = "/playlistsGenre/game">
+
                     <div className={styles.card_holder}>
                         <Image
                             src={gameday}
@@ -68,6 +76,9 @@ export default function Home() {
                         />
                         <p className={styles.text_in_image}> Game Day Tunes </p>
                     </div>
+                    </Link>
+                    <Link href = "/playlistsGenre/workout">
+
                     <div className={styles.card_holder}>
                         <Image
                             src={workout}
@@ -78,6 +89,8 @@ export default function Home() {
                         />
                         <p className={styles.text_in_image}> Workout </p>
                     </div>
+                    </Link>
+                    <Link href = "/playlistsGenre/club">
                     <div className={styles.card_holder}>
                         <Image
                             src={club}
@@ -88,6 +101,8 @@ export default function Home() {
                         />
                         <p className={styles.text_in_image}> Club Music </p>
                     </div>
+                    </Link>
+
                 </div>
             </section>
         </div>
