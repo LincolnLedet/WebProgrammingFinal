@@ -59,7 +59,7 @@ const TopBar = ({isLoggedIn, title, changeLogStatus} : {isLoggedIn:boolean, titl
 
     return (
         <div className={styles.main_body}>
-            <Link href="/about-page">
+            <Link href="/splash">
                 <Image
                     src={dawglogo}
                     height={80}
@@ -67,7 +67,11 @@ const TopBar = ({isLoggedIn, title, changeLogStatus} : {isLoggedIn:boolean, titl
                     alt="Dawgify about page button"
                 />
             </Link>
+            <Link href="/">
+
             <p id={styles.dawgify}> {title} </p>
+            </Link>
+
 
             {isLoggedIn ? loggedIn : notLoggedIn}
         </div>

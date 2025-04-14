@@ -11,6 +11,10 @@
 
 }
 
+.main_body d_body {
+    
+}
+
 .body {
     display: flex;
     flex-direction: column;
