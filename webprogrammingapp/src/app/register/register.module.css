@@ -1,0 +1,71 @@
+.registerContainer {
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgb(134, 28, 28), rgb(178, 178, 178), black); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding: 20px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 280px; 
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px; 
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.label {
+    font-weight: bold;
+    font-size: 16px;
+    color: black; 
+    margin-bottom: 4px;
+}
+
+.input {
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid black;
+    background-color: #f5eaea;
+    border-radius: 6px;
+    width: 100%;
+    color: black;
+    margin-bottom: 16px; 
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px; 
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #c0392b;
+}
+
+.title {
+    color: black; 
+    font-size: 32px; 
+    font-weight: bold; 
+    margin-bottom: 20px; 
+}

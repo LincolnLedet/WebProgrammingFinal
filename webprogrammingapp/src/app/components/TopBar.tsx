@@ -4,9 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import temp from '../images/tempG.png'
 import dawglogo from '../images/dawglogo.png'
+import { useRouter } from 'next/navigation';
 
 const TopBar = ({isLoggedIn, title, changeLogStatus} : {isLoggedIn:boolean, title:string, changeLogStatus:(x:boolean) => void}) => {
-
+    const router = useRouter();
     const notLoggedIn = (
         <div className={styles.links}>
                 {/*<Link
@@ -19,16 +20,9 @@ const TopBar = ({isLoggedIn, title, changeLogStatus} : {isLoggedIn:boolean, titl
                     Login
                 </Link>*/}
                 <p onClick={()=>changeLogStatus(true)} className={styles.p_link}> Login </p>
-                <p>|</p>
-                <Link
-                    href={{
-                        pathname: '/register',
-                        query: {},
-                    }}
-                    className={styles.link}
-                >
-                    Register
-                </Link>
+                <p></p>
+                <p onClick={() => router.push('/register')} className={styles.p_link}> Register </p>
+                
             </div>
     )
 
@@ -53,12 +47,13 @@ const TopBar = ({isLoggedIn, title, changeLogStatus} : {isLoggedIn:boolean, titl
                 >
                     Logout
                 </Link>*/}
-                <p onClick={()=>changeLogStatus(false)} className={styles.p_link}> Logout </p>
-            </div>
+            <p onClick={() => changeLogStatus(false)} className={styles.p_link}> Logout </p>
+        </div>
     )
 
     return (
         <div className={styles.main_body}>
+
             <Link href="/splash">
                 <Image
                     src={dawglogo}
@@ -67,15 +62,16 @@ const TopBar = ({isLoggedIn, title, changeLogStatus} : {isLoggedIn:boolean, titl
                     alt="Dawgify about page button"
                 />
             </Link>
-            <Link href="/">
 
-            <p id={styles.dawgify}> {title} </p>
+            <Link href="/">
+                <p id={styles.dawgify}> {title} </p>
             </Link>
 
 
-            {isLoggedIn ? loggedIn : notLoggedIn}
+            <h2>{isLoggedIn ? loggedIn : notLoggedIn}</h2>
+
         </div>
-  );
+    );
 };
 
 export default TopBar;

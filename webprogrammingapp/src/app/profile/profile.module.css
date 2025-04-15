@@ -2,6 +2,7 @@
 
 .main_body {
     background-image: linear-gradient(rgb(134, 28, 28), rgb(178, 178, 178), black);
+    min-height: 100vh;
 }
 
 .main_body hr {
