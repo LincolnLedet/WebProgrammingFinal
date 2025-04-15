@@ -1,24 +1,31 @@
-'use client'
-import React, { useState, useEffect } from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import styles from './register.module.css';
-import TopBar from '../components/TopBar'
-
-
+import TopBar from '../components/TopBar';
 
 const Register = () => {
-    const [form, setForm] = useState({ name: '', email: '', password: '' });
-  
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setForm({ ...form, [e.target.name]: e.target.value });
-    };
-  
-    const handleSubmit = (e: React.FormEvent) => {
-      e.preventDefault();
-      console.log('Registering user:', form);
-      
-    };
-  
-    return (
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [form, setForm] = useState({ name: '', email: '', password: '' });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Registering user:', form);
+    
+  };
+
+  return (
+    <>
+      <TopBar
+        isLoggedIn={isLoggedIn}
+        title="DAWGIFY"
+        changeLogStatus={setIsLoggedIn}
+        
+      />
       <div className={styles.registerContainer}>
         <h1 className={styles.title}>DAWGIFY</h1>
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -30,7 +37,7 @@ const Register = () => {
             className={styles.input}
             required
           />
-  
+
           <label className={styles.label}>Email</label>
           <input
             name="email"
@@ -39,7 +46,7 @@ const Register = () => {
             className={styles.input}
             required
           />
-  
+
           <label className={styles.label}>Password</label>
           <input
             name="password"
@@ -48,11 +55,12 @@ const Register = () => {
             className={styles.input}
             required
           />
-  
+
           <button type="submit" className={styles.button}>Register</button>
         </form>
       </div>
-    );
-  };
-  
-  export default Register;
+    </>
+  );
+};
+
+export default Register;
