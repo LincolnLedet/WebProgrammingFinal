@@ -1,5 +1,4 @@
 .registerContainer {
-    min-height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -10,9 +9,17 @@
 
 .main_body {
     background-image: linear-gradient(rgb(134, 28, 28), rgb(178, 178, 178), black);
-    min-height: 100vh;
+    height: 100vh;
     padding: 20px;
-  }
+}
+
+.main_body hr {
+    color: black;
+    border: none;
+    border-top: 3px solid black;
+    width: 100%;
+    margin: 0 auto;
+}
 
 .formContainer {
     display: flex;

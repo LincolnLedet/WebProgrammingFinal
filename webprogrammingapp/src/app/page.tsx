@@ -2,31 +2,16 @@
 import Image from "next/image";
 
 import styles from "./page.module.css";
-import WebUserHome from "./home/Home"
+import SplashPage from "./splash/SplashPage"
 
 import { useState } from 'react';
 
 
 
 export default function Home() {
-  const [msg, setMsg] = useState("");
-
-  const pingDB = async () => {
-    setMsg("Pinging...");
-    try {
-      const res = await fetch("/api/ping");
-      const data = await res.json();
-      setMsg(data.msg || data.error);
-    } catch (err) {
-      console.log(err);
-      setMsg("❌ Failed to reach server");
-    }
-  };
-
-
   return (
     <div>
-      <WebUserHome/>
+      <SplashPage/>
     </div>
   )
   /*(

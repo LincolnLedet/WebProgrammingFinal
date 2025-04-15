@@ -1,10 +1,11 @@
 'use client';
-
 import React, { useState } from 'react';
 import styles from './register.module.css';
+import { useRouter } from 'next/navigation'
 import TopBar from '../components/TopBar';
 
 const Register = () => {
+  const router = useRouter()
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', password: '' });
 
@@ -15,6 +16,7 @@ const Register = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Registering user:', form);
+    router.push('/profile')
     
   };
 

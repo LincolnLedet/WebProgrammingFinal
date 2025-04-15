@@ -68,6 +68,8 @@ export default function Profile() {
         });
         setUserPlaylists(oldToNew);
         setIsOpened(false);
+        setPictureSrc('')
+        setName('')
     }
 
     return (

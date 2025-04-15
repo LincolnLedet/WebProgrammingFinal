@@ -28,7 +28,7 @@ export default function SplashPage() {
           <p className={styles.col2_content}>
           is a UGA student community playlist sharer where students can view their own Spotify accounts information and create and edit playlist to share with others.
           </p>
-          <Link href="/">
+          <Link href="/home">
             <button className={styles.getStartedButton}> Get Started</button>
           </Link>
         </div>

@@ -20,7 +20,7 @@ const TopBar = ({isLoggedIn, title, changeLogStatus} : {isLoggedIn:boolean, titl
                     Login
                 </Link>*/}
                 <p onClick={()=>changeLogStatus(true)} className={styles.p_link}> Login </p>
-                <p></p>
+                <p>|</p>
                 <p onClick={() => router.push('/register')} className={styles.p_link}> Register </p>
                 
             </div>
