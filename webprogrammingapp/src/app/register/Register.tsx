@@ -19,13 +19,14 @@ const Register = () => {
   };
 
   return (
-    <>
+    <div className={styles.main_body}>
       <TopBar
         isLoggedIn={isLoggedIn}
         title="DAWGIFY"
         changeLogStatus={setIsLoggedIn}
         
       />
+      <hr></hr>
       <div className={styles.registerContainer}>
         <h1 className={styles.title}>DAWGIFY</h1>
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -59,7 +60,7 @@ const Register = () => {
           <button type="submit" className={styles.button}>Register</button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

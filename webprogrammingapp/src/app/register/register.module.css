@@ -1,13 +1,18 @@
 .registerContainer {
     min-height: 100vh;
     width: 100%;
-    background-image: linear-gradient(rgb(134, 28, 28), rgb(178, 178, 178), black); 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center; 
     padding: 20px;
 }
+
+.main_body {
+    background-image: linear-gradient(rgb(134, 28, 28), rgb(178, 178, 178), black);
+    min-height: 100vh;
+    padding: 20px;
+  }
 
 .formContainer {
     display: flex;
