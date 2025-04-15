@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+
 .main_body {
     background-image: linear-gradient(rgb(134, 28, 28), rgb(178, 178, 178), black);
 }
@@ -47,6 +49,7 @@
     height: 70vh;
     margin-top: 30px;
     margin-left: 30px;
+    font-family: 'Roboto Slab', serif;
 }
 
 .title_section {
