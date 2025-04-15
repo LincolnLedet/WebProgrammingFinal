@@ -47,12 +47,13 @@ const TopBar = ({isLoggedIn, title, changeLogStatus} : {isLoggedIn:boolean, titl
                 >
                     Logout
                 </Link>*/}
-                <p onClick={()=>changeLogStatus(false)} className={styles.p_link}> Logout </p>
-            </div>
+            <p onClick={() => changeLogStatus(false)} className={styles.p_link}> Logout </p>
+        </div>
     )
 
     return (
         <div className={styles.main_body}>
+
             <Link href="/splash">
                 <Image
                     src={dawglogo}
@@ -61,15 +62,16 @@ const TopBar = ({isLoggedIn, title, changeLogStatus} : {isLoggedIn:boolean, titl
                     alt="Dawgify about page button"
                 />
             </Link>
-            <Link href="/">
 
-            <p id={styles.dawgify}> {title} </p>
+            <Link href="/">
+                <p id={styles.dawgify}> {title} </p>
             </Link>
 
 
-            {isLoggedIn ? loggedIn : notLoggedIn}
+            <h2>{isLoggedIn ? loggedIn : notLoggedIn}</h2>
+
         </div>
-  );
+    );
 };
 
 export default TopBar;
