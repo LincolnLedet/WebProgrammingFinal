@@ -17,6 +17,10 @@
     
 }
 
+.cardContainer { 
+    gap: 20px;
+}
+
 .card {
     display: flex;
     flex-direction: row;
@@ -24,6 +28,8 @@
     background-image: linear-gradient(rgb(102, 38, 38),rgb(165, 61, 61));
     color: black;
     border-radius: 20px;
+    gap: 10px;
+    margin: 30px;
 }
 
 .cardTitle{ 

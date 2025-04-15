@@ -19,8 +19,12 @@
     margin-right: 40px;
 }
 
-.link {
-
+.main_body a, 
+.main_body h2 {
+  color: white;
+  width: 300px;
+  text-decoration: none;
+  font-family: Georgia, serif;
 }
 
 .p_link {

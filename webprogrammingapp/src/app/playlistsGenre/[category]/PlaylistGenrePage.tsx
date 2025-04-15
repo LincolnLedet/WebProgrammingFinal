@@ -135,24 +135,26 @@ export default function PlaylistCategoryPage() {
 
     return (
 
-        <div className={styles.genrePage}>
-            <TopBar isLoggedIn={isLoggedIn} title={"DAWGIFY"} changeLogStatus={setIsLoggedIn} />
-            <hr></hr>
-            <div className={styles.genrePageContainer}>
-            <h1 className={styles.title}>{title}</h1>
-            <Link href = "/playlist-page">
-                {filteredPlaylists.map((playlist, index) => (
-                    <div key={index} className={styles.card}>
-                        <img src={playlist.image} alt={playlist.title} className={styles.cardImage} />
-                        <div className={styles.cardText}>
-                            <h3 className={styles.cardTitle}>{playlist.title}</h3>
-                            <p className={styles.cardUser}>By {playlist.user}</p>
-                        </div>
-                    </div>
-                ))}
-                </Link>
-            </div>
-
+    <div className={styles.genrePage}>
+      <TopBar isLoggedIn={isLoggedIn} title={"DAWGIFY"} changeLogStatus={setIsLoggedIn} />
+      <hr></hr>
+      <div className={styles.genrePageContainer}>
+        <h1 className={styles.title}>{title}</h1>
+        <div className={styles.cardContainer}>
+            {filteredPlaylists.map((playlist, index) => (
+              <Link href="/playlist-page">
+              <div key={index} className={styles.card}>
+                <img src={playlist.image} alt={playlist.title} className={styles.cardImage} />
+                <div className={styles.cardText}>
+                  <h3 className={styles.cardTitle}>{playlist.title}</h3>
+                  <p className={styles.cardUser}>By {playlist.user}</p>
+                </div>
+              </div>
+              </Link>
+            ))}
         </div>
-    )
+      </div>
+
+    </div>
+  )
 }
