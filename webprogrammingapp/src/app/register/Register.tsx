@@ -30,7 +30,7 @@ const Register = () => {
       />
       <hr></hr>
       <div className={styles.registerContainer}>
-        <h1 className={styles.title}>DAWGIFY</h1>
+        <h1 className={styles.title}> Create Account </h1>
         <form className={styles.form} onSubmit={handleSubmit}>
           <label className={styles.label}>Name</label>
           <input

@@ -28,7 +28,7 @@
 
 /* Modal body styling */
 .modal_body {
-    background-image: linear-gradient(red, black);
+    background-image: linear-gradient(rgb(134, 28, 28), black);
     height: 50vh;
     width: 50vw;
     padding: 10px;

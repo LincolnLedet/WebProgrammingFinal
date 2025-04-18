@@ -58,7 +58,7 @@ export default function Profile() {
         }
     }, [isOpened]);
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
         let oldToNew = userPlaylists;
         oldToNew.push({
