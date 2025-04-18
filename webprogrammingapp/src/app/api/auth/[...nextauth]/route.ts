@@ -1,17 +1,28 @@
-// app/api/auth/[...nextauth]/route.ts
-
 import NextAuth from "next-auth"
-import GitHubProvider from "next-auth/providers/github" // or SpotifyProvider
-
+import SpotifyProvider from "next-auth/providers/spotify"
 import type { NextAuthOptions } from "next-auth"
 
 export const authOptions: NextAuthOptions = {
   providers: [
-    GitHubProvider({
-      clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!,
+    SpotifyProvider({
+      clientId: process.env.SPOTIFY_CLIENT_ID!,
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET!,
+      authorization:
+        "https://accounts.spotify.com/authorize?scope=user-read-email playlist-read-private",
     }),
   ],
+  callbacks: {
+    async jwt({ token, account }) {
+      if (account) {
+        token.accessToken = account.access_token
+      }
+      return token
+    },
+    async session({ session, token }) {
+      session.accessToken = token.accessToken
+      return session
+    },
+  },
 }
 
 const handler = NextAuth(authOptions)
