@@ -25,16 +25,20 @@ export default function PlaylistPage() {
         }
     }, [isLoggedIn])
 
+    useEffect(() => {
+        //fetch for playlist songs
+    }, [])
+
     const user = "Me"
 
     const defaultPlaylistSongs = []
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 7; i++) {
         let song = {
             id: i,
             name:"Song " + i,
             album: "Ur Mom",
             artist: "Me",
-            albumPicture: albumcover,
+            albumPicture: temp,
         }
         defaultPlaylistSongs.push(song)
     }
@@ -42,8 +46,27 @@ export default function PlaylistPage() {
 
     const [searchResults, setSearchResults] = useState(defaultPlaylistSongs)
 
-    const width = 510
-    const height = 170
+    const [query, setQuery] = useState('')
+
+    const addSong = (song:Song) => {
+        setPlaylistSongs([...playlistSongs, song])
+    }
+
+    const removeSong = (song:Song) => {
+        // Remove song fetch, replace below with setting playlistSongs to return of the remove method
+        let tempSongs = []
+        for (let i = 0; i < playlistSongs.length; i++) {
+            if (song.id != playlistSongs[i].id) {
+                tempSongs.push(playlistSongs[i])
+            }
+        }
+        setPlaylistSongs(tempSongs)
+    }
+
+    const sendQuery = () => {
+        // fetch for matching songs
+        setQuery('')
+    }
 
     return (
         <div className={styles.main_body}>
@@ -63,21 +86,24 @@ export default function PlaylistPage() {
                         </button>
                     </div>
                     <div className={styles.searchbar}>
-                        <button></button> {/** Put search icon here */}
-                        <input type='text'></input>
+                        <input type='text' value={query} onChange={(e) => setQuery(e.target.value)}></input>
+                        <button onClick={sendQuery}> Search </button>
                     </div>
                     <div className={styles.results}>
                         {searchResults.length > 0 ? (
                             searchResults.map((song:Song) => (
-                                <div className={styles.card_holder} key={song.id}>
+                                <section className={styles.result_card} key={song.id} onClick={() => addSong(song)}>
                                     <Image
                                         src={song.albumPicture}
-                                        height={60}
-                                        width={60}
                                         alt={song.name + " button"}
+                                        className={styles.result_image}
                                     />
-                                    <p> {song.name} </p>
-                                </div>
+                                    <div className={styles.card_text}>
+                                        <p> Artist: {song.artist} </p>
+                                        <p> Album: {song.album} </p>
+                                        <p> Song: {song.name} </p>
+                                    </div>
+                                </section>
                             ))
                         ) : (
                             <p> No Songs found... </p>
@@ -89,33 +115,29 @@ export default function PlaylistPage() {
                         <div className={styles.title_section}>
                             <Image
                                 src={albumcover}
-                                height={180}
-                                width={180}
                                 alt={"Playlist picture"}
-                                id={styles.playlist_picture}
+                                id={styles.playlist_image}
                             />
                             <div>
                                 <h1> Songs To Get Silly To </h1>
                                 <h2> By {user} </h2>
                             </div>
                         </div>
-                        <hr></hr>
+                        <hr id={styles.hr}></hr>
                         <div className={styles.song_section}>
                             {playlistSongs.length > 0 ? (
                                 playlistSongs.map((song:Song) => (
-                                    <div className={styles.song_component} key={song.id}>
-                                        <div className={styles.song}>
-                                            <Image
-                                                src={song.albumPicture}
-                                                height={70}
-                                                width={200}
-                                                alt={song.name + " button"}
-                                                className={styles.song_picture}
-                                            />
+                                    <section className={styles.playlist_song} key={song.id}>
+                                        <Image
+                                            src={song.albumPicture}
+                                            alt={song.name + " button"}
+                                            className={styles.song_image}
+                                        />
+                                        <div className={styles.song_component}>
                                             <p> Song: {song.name} | Artist: {song.artist} </p>
                                         </div>
-                                        <button> Delete </button>
-                                    </div>
+                                        <button onClick={() => removeSong(song)}> Delete </button>
+                                    </section>
                                 ))
                             ) : (
                                 <p> No Songs found... </p>
