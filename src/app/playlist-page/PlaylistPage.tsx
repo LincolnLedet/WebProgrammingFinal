@@ -37,19 +37,37 @@ export default function PlaylistPage() {
         }
     }, [session, router])
 
+    useEffect(() => {
+        if (!session) return
+    
+        ;(async () => {
+          try {
+            const res = await fetch(
+              `/api/playlists/addsong?playlistName=${encodeURIComponent(playlistName)}`
+            )
+            if (!res.ok) throw new Error(res.statusText)
+            const data: Song[] = await res.json()
+            setPlaylistSongs(data)
+          } catch (err) {
+            console.error('❌ load playlist songs:', err)
+          }
+        })()
+      }, [session, playlistName])
+      
+
     const addSong = async (song: Song) => {
         const alreadyExists = playlistSongs.some((s) => s.id === song.id);
         if (!alreadyExists) {
           setPlaylistSongs((prev) => [...prev, song]);
       
           try {
-            const res = await fetch('/api/playlist/addSong', {
+            const res = await fetch('/api/playlists/addsong', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                playlistName: 'Songs To Get Silly To', // update this if using a dynamic playlist
+                playlistName, // update this if using a dynamic playlist
                 song,
               }),
             });
