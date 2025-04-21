@@ -53,7 +53,7 @@ export default function PlaylistPage() {
           }
         })()
       }, [session, playlistName])
-      
+
 
     const addSong = async (song: Song) => {
         const alreadyExists = playlistSongs.some((s) => s.id === song.id);
@@ -84,16 +84,30 @@ export default function PlaylistPage() {
       
       
 
-    const removeSong = (song:Song) => {
-        // Remove song fetch, replace below with setting playlistSongs to return of the remove method
-        let tempSongs = []
-        for (let i = 0; i < playlistSongs.length; i++) {
-            if (song.id != playlistSongs[i].id) {
-                tempSongs.push(playlistSongs[i])
-            }
-        }
-        setPlaylistSongs(tempSongs)
+const removeSong = async (song: Song) => {
+  try {
+    // 1) Tell the server to remove it
+    const res = await fetch('/api/playlists/addsong', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        playlistName,       // same dynamic name you used for addsong
+        songId: song.id,    // remove by id
+      }),
+    })
+    if (!res.ok) {
+      console.error('Failed to remove song:', await res.text())
+      return
     }
+
+    // 2) Update the UI state
+    setPlaylistSongs((prev) =>
+      prev.filter((s) => s.id !== song.id)
+    )
+  } catch (err) {
+    console.error('Error removing song from playlist:', err)
+  }
+}
 
     const sendQuery = async () => {
         if (!session?.accessToken || !query) return;

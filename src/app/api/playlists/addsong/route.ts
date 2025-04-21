@@ -22,6 +22,27 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }
+export async function DELETE(req: NextRequest) {
+  const session = await getServerSession(authOptions)
+  if (!session) {
+    return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
+  }
+  const { playlistName, songId } = await req.json()
+  if (!playlistName || songId == null) {
+    return NextResponse.json({ error: 'Missing playlistName or songId' }, { status: 400 })
+  }
+
+  const client = await clientPromise
+  const db = client.db()
+
+  await db.collection('playlists').updateOne(
+    { userEmail: session.user.email, name: playlistName },
+    { $pull: { songs: { id: songId } } }
+  )
+
+  return NextResponse.json({ success: true })
+
+}
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions)
