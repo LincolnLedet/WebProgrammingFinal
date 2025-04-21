@@ -1,22 +1,31 @@
 import { NextResponse } from 'next/server'
 import clientPromise from '@/lib/mongodb'
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json()
-    const { name, picture, userEmail } = body
+    const session = await getServerSession(authOptions);
+    if (!session) {
+      return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
+    }
+    const userEmail = session!.user!.email!
 
-    if (!userEmail || !name || !picture) {
+
+    const body = await req.json()
+    const { name, picture } = body
+
+    if (!name || !picture) {
       return NextResponse.json({ message: 'Missing fields' }, { status: 400 })
     }
 
     const client = await clientPromise
-    const db = client.db('Dawgify') // or your DB name
+    const db = client.db() // or your DB name
 
     const playlist = {
+      userEmail,
       name,
       picture,
-      userEmail,
       songs: [],
       createdAt: new Date(),
     }

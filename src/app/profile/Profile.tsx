@@ -7,26 +7,38 @@ import Image from 'next/image'
 import study from '../images/studymusic.png'
 import styles from './profile.module.css'
 
+
 interface Playlist {
   id: number
   name: string
   picture: string
+  genre: string
 }
 
-export default function Profile() {
+export default  function Profile() {
   // Hooks at top
   const { data: session, status } = useSession()
   const router = useRouter()
 
   const [name, setName] = useState('')
   const [pictureSrc, setPictureSrc] = useState('')
-  const [userPlaylists, setUserPlaylists] = useState<Playlist[]>(() =>
-    Array.from({ length: 4 }, (_, i) => ({
-      id: i,
-      name: `Playlist ${i}`,
-      picture: study.src,
-    }))
-  )
+  const [userPlaylists, setUserPlaylists] = useState<Playlist[]>([])
+  const [loading, setLoading] = useState(true)
+
+ // fetchs user playlists
+  useEffect(() => {
+    if (session) {
+      setLoading(true)
+      fetch("/api/playlists/user")
+        .then((res) => {
+          if (!res.ok) throw new Error(res.statusText)
+            return res.json()
+        })
+        .then((data: Playlist[]) => setUserPlaylists(data))
+        .catch((err) => console.error("❌ fetch playlists:", err))
+        .finally(() => setLoading(false))
+    }
+  },[session])
   const [isOpened, setIsOpened] = useState(false)
   const dialogRef = useRef<HTMLDialogElement>(null)
 
@@ -68,13 +80,26 @@ export default function Profile() {
   const user = session.user
 
   // Add–playlist handler
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
   
-    setUserPlaylists(ps => [
-      ...ps,
-      { id: ps.length, name, picture: pictureSrc },
-    ])
+    const body = { name, picture: pictureSrc, genre: "" /* or add a genre input */ }
+    const res = await fetch("/api/playlists/save", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    })
+    if (!res.ok) throw new Error(await res.text())
+
+
+    const created: Playlist & { _id: string } = await res.json()
+    setUserPlaylists((ps) => [...ps, {
+      id: ps.length,         // or map _id to a string id
+      name: created.name,
+      picture: created.picture,
+      genre: created.genre,
+    }])
+
   
     setIsOpened(false)
     setName('')
