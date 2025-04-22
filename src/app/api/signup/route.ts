@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import bcrypt from 'bcrypt'
+//import bcrypt from 'bcrypt'
 import clientPromise from '@/lib/mongodb'
+
+const bcrypt = require('bcryptjs')
 
 // URL: POST /api/signup
 // Purpose: Handle user registration by hashing the password and creating a new user record in MongoDB

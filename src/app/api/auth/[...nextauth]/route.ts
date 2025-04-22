@@ -4,7 +4,9 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import clientPromise from "@/lib/mongodb"
 import type { NextAuthOptions } from "next-auth"
-import bcrypt from "bcrypt"
+//import Cookies from 'js-cookie'
+//import bcrypt from "bcrypt"
+const bcrypt = require('bcryptjs')
 
 // Connect to MongoDB manually so we can use it inside `authorize`
 const client = await clientPromise
