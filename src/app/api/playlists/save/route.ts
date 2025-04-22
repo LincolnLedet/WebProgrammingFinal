@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
 
     const body = await req.json()
-    const { name, picture } = body
+    const { name, picture, genre} = body
 
     if (!name || !picture) {
       return NextResponse.json({ message: 'Missing fields' }, { status: 400 })
@@ -26,6 +26,7 @@ export async function POST(req: Request) {
       userEmail,
       name,
       picture,
+      genre,
       songs: [],
       createdAt: new Date(),
     }
