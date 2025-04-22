@@ -221,7 +221,7 @@ const removeSong = async (song: Song) => {
                                 </section>
                             ))
                         ) : (
-                            <p> No Songs found... </p>
+                            !session?.accessToken ? (<p> Must connect to spotify! </p>) : (<p> No Songs found... </p>)
                         )}
                     </div>
                 </div>
