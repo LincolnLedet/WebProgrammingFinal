@@ -53,14 +53,28 @@
     margin-bottom: 10px;
 }
 
+#icon {
+    height: 5vw;
+    width: auto
+}
+
 #dawgify {
-    font-size: 40pt;
+    font-size: calc(20pt + 1.7vw);
     color: black;
     font-weight: bolder;
+    margin-right: 5px;
 }
 
 .message {
     margin-right: 40px;
+}
+
+.message h1 {
+    font-size: calc(8px + 1.3vw);
+}
+
+.message p {
+    font-size: calc(5px + 1.3vw);
 }
 
 .links {
@@ -68,6 +82,14 @@
     font-size: x-large;
     gap: 8px;
     font-weight: bold;
+}
+
+.not_logged_in {
+    display: flex;
+    font-size: x-large;
+    gap: 8px;
+    font-weight: bold;
+    margin-right: 40px;
 }
 
 .main_body a, 

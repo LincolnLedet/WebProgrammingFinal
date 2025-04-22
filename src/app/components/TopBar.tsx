@@ -63,7 +63,7 @@ export default function TopBar({
   }
 
   const notLoggedIn = (
-    <div className={styles.links}>
+    <div className={styles.not_logged_in}>
       <p onClick={() => setIsOpened(true)} className={styles.p_link}>
         Login
       </p>
@@ -141,7 +141,7 @@ export default function TopBar({
 
       {/* Logo & Title */}
       <Link href="/splash">
-        <Image src={dawglogo} height={80} width={120} alt="Logo" />
+        <Image src={dawglogo} height={80} width={120} alt="Logo" id={styles.icon} />
       </Link>
       <Link href="/home">
         <p id={styles.dawgify}>{title}</p>

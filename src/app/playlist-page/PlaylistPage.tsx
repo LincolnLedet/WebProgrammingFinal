@@ -188,22 +188,20 @@ export default function PlaylistPage() {
             <hr></hr>
             <section className={styles.body}>
                 <div className={styles.left_half}> 
-                    <div className={styles.spotify_connect}>
-                        <p className={styles.spotify_text}>Press to connect to Spotify</p>
+                    <div className={styles.spotify}>
+                        <p>Press to connect to Spotify</p>
                         <button
                           onClick={() => {
                             if (!session?.accessToken) {
                               signIn('spotify')
                             }
                           }}
-                          className={styles.spotify_button}
                         >
-                          <Image
-                              src={spotify}
-                              alt="Connect to Spotify"
-                              width={300}
-                              height={100}
-                          />
+                        <Image
+                            src={spotify}
+                            alt="Connect to Spotify"
+                            className={styles.spotify_image}
+                        />
                         </button>
                     </div>
                     <div className={styles.searchbar}>

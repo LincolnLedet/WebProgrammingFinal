@@ -20,21 +20,26 @@
     min-height: 85vh;
 }
 
-.spotify_connect {
+.spotify {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5px;
 }
 
-.spotify_text {
+.spotify_image {
+    width: 20vw;
+    height: auto;
+}
+
+.spotify p {
     color: black;
     text-align: center;
     font-size: 16px;
     font-weight: bold;
 }
 
-.spotify_button {
+.spotify button {
     background: none;
     border: none;
     padding: 0;
@@ -47,11 +52,13 @@
     align-items: center;
     gap: 10px;
     margin-top: 20px;
+    width: 35vw;
 }
 
 .searchbar input {
     height: 30px;
     font-size: 25px;
+    width: 70%;
 }
 
 .results {
@@ -70,6 +77,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
+    width: 20vw;
 }
 
 .result_card:hover {
@@ -87,12 +95,13 @@
     height: 100px;
     width: 250px;
     padding-left: 40px;
+    padding-right: 1vw;
     border-radius: 20px;
     background-color: #C1D5CF;
     font-size: x-large;
     cursor: pointer;
     font-family: 'Roboto Slab', serif;
-    font-size: 12px;
+    font-size: calc(3px + .7vw);
 }
 
 .result_image {
@@ -100,7 +109,7 @@
     border-radius: 20px;
     z-index: 10;
     height: 100px;
-    width: 120px;
+    width: 12vw;
 }
 
 .left_half {
@@ -118,7 +127,6 @@
     width: 95%;
     height: 70vh;
     margin-top: 30px;
-    margin-left: 30px;
     font-family: 'Roboto Slab', serif;
 }
 
@@ -133,11 +141,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: calc(3px + .9vw);
 }
 
 #playlist_image {
     border-radius: 20px;
-    height: 200px;
+    height: 14vw;
     width: auto;
 }
 
@@ -170,6 +179,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    width: 50vw;   
 }
 
 .song_component {
@@ -186,12 +196,12 @@
 
 .playlist_song button {
     flex-shrink: 0;
-    width: 70px;
+    width: 5vw;
     height: 45px;
     margin-left: 10px;
     background-color: white;
     color: black;
-    font-size: large;
+    font-size: calc(3px + .9vw);
     border-style: black 10px;
 }
 
