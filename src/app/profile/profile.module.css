@@ -53,10 +53,6 @@
     font-size: 20px;
 }
 
-.modal_button {
-
-}
-
 .body {
     display: flex;
     flex-direction: column;
@@ -76,6 +72,16 @@
     margin-top: 20px;
     position: relative;
     cursor: pointer;
+}
+
+.delete_button {
+    background-image: linear-gradient(rgb(134, 28, 28), black);
+    padding: 5px;
+    height: 12vh;
+    position: absolute;
+    margin-left: 30px;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .add_playlist {

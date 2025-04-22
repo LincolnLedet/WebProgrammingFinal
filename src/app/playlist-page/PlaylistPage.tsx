@@ -18,12 +18,24 @@ interface Song {
     albumPicture: string;
 }
 
+const categoryTitles: Record<string, string> = {
+  workout: 'Workout music',
+  study: 'Study Music',
+  game: 'Game Day Tunes',
+  club: 'Club Music',
+  walking: 'Walking music',
+  unknown: 'Unknown Genre'
+};
+
 export default function PlaylistPage() {
     const { data: session } = useSession();
     const router = useRouter();
     const searchParams = useSearchParams();
-    const playlistName = searchParams.get('name') || 'My Playlist';
+    const playlistName = searchParams.get('name') || 'Unknown Title';
     const playlistImage = searchParams.get('image') || albumcover.src;
+    const playlistUserName = searchParams.get('userName') || 'Unknown User';
+    const category = searchParams.get('genre') || 'unknown';
+    const playlistGenre = categoryTitles[category] || 'Unknown Genre';
     const user = session?.user?.name || 'Me';
 
     const [playlistSongs, setPlaylistSongs] = useState<Song[]>([]);
@@ -84,30 +96,30 @@ export default function PlaylistPage() {
       
       
 
-const removeSong = async (song: Song) => {
-  try {
-    // 1) Tell the server to remove it
-    const res = await fetch('/api/playlists/addsong', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        playlistName,       // same dynamic name you used for addsong
-        songId: song.id,    // remove by id
-      }),
-    })
-    if (!res.ok) {
-      console.error('Failed to remove song:', await res.text())
-      return
-    }
+    const removeSong = async (song: Song) => {
+      try {
+        // 1) Tell the server to remove it
+        const res = await fetch('/api/playlists/addsong', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            playlistName,       // same dynamic name you used for addsong
+            songId: song.id,    // remove by id
+          }),
+        })
+        if (!res.ok) {
+          console.error('Failed to remove song:', await res.text())
+          return
+        }
 
-    // 2) Update the UI state
-    setPlaylistSongs((prev) =>
-      prev.filter((s) => s.id !== song.id)
-    )
-  } catch (err) {
-    console.error('Error removing song from playlist:', err)
-  }
-}
+        // 2) Update the UI state
+        setPlaylistSongs((prev) =>
+          prev.filter((s) => s.id !== song.id)
+        )
+      } catch (err) {
+        console.error('Error removing song from playlist:', err)
+      }
+    }
 
     const sendQuery = async () => {
         if (!session?.accessToken || !query) return;
@@ -237,7 +249,8 @@ const removeSong = async (song: Song) => {
                             />
                             <div>
                                 <h1>{playlistName}</h1>
-                                <h2>By {user}</h2>
+                                <h2>Genre:  {playlistGenre}</h2>
+                                <h2>By {playlistUserName}</h2>
                             </div>
                         </div>
                         <hr id={styles.hr}></hr>

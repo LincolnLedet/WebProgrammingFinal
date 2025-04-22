@@ -10,6 +10,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
     }
     const userEmail = session!.user!.email!
+    const userName = session!.user!.name!
 
 
     const body = await req.json()
@@ -25,6 +26,7 @@ export async function POST(req: Request) {
     const playlist = {
       userEmail,
       name,
+      userName,
       picture,
       genre,
       songs: [],
@@ -33,7 +35,7 @@ export async function POST(req: Request) {
 
     const result = await db.collection('playlists').insertOne(playlist)
 
-    return NextResponse.json({ message: 'Playlist saved', playlistId: result.insertedId }, { status: 201 })
+    return NextResponse.json({ message: 'Playlist saved', playlist: playlist }, { status: 201 })
   } catch (err) {
     console.error('Error saving playlist:', err)
     return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 })

@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+
+.main_body {
+    background-image: linear-gradient(rgb(134, 28, 28), rgb(178, 178, 178), black);
+    min-height: 100vh;
+}
+
+.main_body hr {
+    color: black;
+    border: none;
+    border-top: 3px solid black;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    gap: 50px;
+    color: black;
+}
+
+.body p {
+    font-size: larger;
+}

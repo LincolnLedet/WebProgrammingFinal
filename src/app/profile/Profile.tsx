@@ -11,6 +11,7 @@ interface Playlist {
   name: string
   picture: string
   genre: string
+  userName: string
 }
 
 export default function Profile() {
@@ -18,10 +19,10 @@ export default function Profile() {
   const router = useRouter()
 
   // ✅ All hooks are declared before any returns
+  const [msg, setMsg] = useState("");
   const [name, setName] = useState('')
   const [pictureSrc, setPictureSrc] = useState('')
   const [userPlaylists, setUserPlaylists] = useState<Playlist[]>([])
-  const [loading, setLoading] = useState(true)
   const [isOpened, setIsOpened] = useState(false)
   const [genre, setGenre] = useState('') // ← moved up
   const dialogRef = useRef<HTMLDialogElement>(null)
@@ -29,7 +30,6 @@ export default function Profile() {
   // Fetch user playlists
   useEffect(() => {
     if (session) {
-      setLoading(true)
       fetch("/api/playlists/user")
         .then((res) => {
           if (!res.ok) throw new Error(res.statusText)
@@ -37,7 +37,6 @@ export default function Profile() {
         })
         .then((data: Playlist[]) => setUserPlaylists(data))
         .catch((err) => console.error("❌ fetch playlists:", err))
-        .finally(() => setLoading(false))
     }
   }, [session])
 
@@ -55,6 +54,30 @@ export default function Profile() {
   // Loading / login guard
   if (status === 'loading') {
     return <p>Loading your profile…</p>
+  }
+
+  const removePlaylist = (pl: Playlist) => {
+    fetch('/api/playlists/delete', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          playlistId:pl.name,  // remove by id
+        }),
+      })
+      .then((res) => {
+          if (!res.ok) throw new Error(res.statusText)
+          return res.json()
+      })
+      .then((data) => {
+        console.log(data)
+        return data
+      })
+      .then((data:Playlist[]) => {
+        setUserPlaylists(data)
+      })
+      .catch((err) => {
+        console.error("❌ delete playlist:", err)
+      })
   }
 
   if (!session) {
@@ -83,6 +106,17 @@ export default function Profile() {
     e.preventDefault()
 
     const body = { name, picture: pictureSrc, genre }
+    for (let i = 0; i < userPlaylists.length; i++) {
+      if (userPlaylists[i].name === name) {
+        setMsg("You already have a playlist named " + name + "!")
+        return
+      }
+    }
+    if (genre === "") {
+      setMsg("Please choose a category!")
+      return
+    }
+    setMsg("")
     const res = await fetch("/api/playlists/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -90,12 +124,13 @@ export default function Profile() {
     })
     if (!res.ok) throw new Error(await res.text())
 
-    const created: Playlist & { _id: string } = await res.json()
-    setUserPlaylists((ps) => [...ps, created])
+    const created: Playlist & { playlist: Playlist } = await res.json()
+    setUserPlaylists((ps) => [...ps, created.playlist])
 
     setIsOpened(false)
     setName('')
     setPictureSrc('')
+    setGenre("")
   }
 
   return (
@@ -118,7 +153,7 @@ export default function Profile() {
               <option value="" disabled>Select a category</option>
               <option value="study">Study Music</option>
               <option value="walking">Walking Music</option>
-              <option value="gameday">Game Day Tunes</option>
+              <option value="game">Game Day Tunes</option>
               <option value="workout">Workout Music</option>
               <option value="club">Club Music</option>
             </select>
@@ -138,6 +173,7 @@ export default function Profile() {
               required
             />
             <button type="submit">Submit</button>
+            {msg && <p>{msg}</p>}
           </form>
         </div>
       </dialog>
@@ -162,9 +198,6 @@ export default function Profile() {
             <li
               key={index}
               className={styles.card_holder}
-              onClick={() =>
-                router.push(`/playlist-page?name=${encodeURIComponent(pl.name)}&image=${encodeURIComponent(pl.picture)}`)
-              }
             >
               <Image
                 src={pl.picture}
@@ -172,8 +205,12 @@ export default function Profile() {
                 height={170}
                 alt={pl.name}
                 className={styles.card}
+                onClick={() =>
+                  router.push(`/playlist-page?name=${encodeURIComponent(pl.name)}&image=${encodeURIComponent(pl.picture)}&userName=${encodeURIComponent(pl.userName)}&genre=${encodeURIComponent(pl.genre)}`)
+                }
               />
               <p className={styles.text_in_image}>{pl.name}</p>
+              <button onClick={() => removePlaylist(pl)} className={styles.delete_button}> Delete </button>
             </li>
           ))}
         </ul>
