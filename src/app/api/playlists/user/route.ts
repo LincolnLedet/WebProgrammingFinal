@@ -3,7 +3,7 @@ import clientPromise from '@/lib/mongodb'
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest) { // returns useres in database. Seaches by email
   const session = await getServerSession(authOptions);
   if (!session)
     return NextResponse.json({ error: "Not logged in" }, { status: 401 });
@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
   const db = client.db()
   const playlists = db.collection('playlists')
 
-  const userPlaylists = await playlists.find({ userEmail }).toArray()
+  const userPlaylists = await playlists.find({ userEmail }).toArray() // finds users by email
 
   // Convert ObjectId to string
   const transformed = userPlaylists.map(pl => ({

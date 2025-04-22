@@ -49,7 +49,7 @@ export default function PlaylistPage() {
         }
     }, [session, router])
 
-    useEffect(() => {
+    useEffect(() => { // pulls songs within the playlist
         (async () => {
             try {
                 const res = await fetch(
@@ -73,7 +73,7 @@ export default function PlaylistPage() {
       }
         const alreadyExists = playlistSongs.some((s) => s.id === song.id);
         if (!alreadyExists) {
-          setPlaylistSongs((prev) => [...prev, song]);
+          setPlaylistSongs((prev) => [...prev, song]);// keeps previous data but adds addtional song
       
           try {
             const res = await fetch('/api/playlists/addsong', {
@@ -97,7 +97,7 @@ export default function PlaylistPage() {
         }
       };
 
-    const removeSong = async (song: Song) => {
+    const removeSong = async (song: Song) => { //removes song from Playlist songs and database 
       if (user == null) {
         return
       }
