@@ -24,7 +24,7 @@ interface Playlist {
   genre: string
 }
 
-export default function PlaylistCategoryPage() {
+export default function PlaylistCategoryPage() { //uses router and [category] dir name to dynimcal make pages based on list. 
 
   const router = useRouter()
 

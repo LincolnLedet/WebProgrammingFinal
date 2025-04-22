@@ -3,8 +3,10 @@ import clientPromise from '@/lib/mongodb';
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
-export async function DELETE(req: NextRequest) {
+export async function DELETE(req: NextRequest) { // deletes whole playlist from data base
   const session = await getServerSession(authOptions)
+
+  // checks to make sure you are logged and you have permissons 
   if (!session) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
   }
