@@ -108,6 +108,9 @@
 }
   
 .getStartedButton {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
     padding: 20px 40px;
     background-color: rgba(100, 100, 100, 0.6);
     color: black;
@@ -116,7 +119,6 @@
     font-size: 20px;
     font-family: 'Roboto Slab', serif;
     cursor: pointer;
-    position: absolute;
     left: 30%;
     top: 50%;
 }
