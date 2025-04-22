@@ -59,12 +59,15 @@
     font-weight: bolder;
 }
 
+.message {
+    margin-right: 40px;
+}
+
 .links {
     display: flex;
     font-size: x-large;
     gap: 8px;
     font-weight: bold;
-    margin-right: 40px;
 }
 
 .main_body a, 

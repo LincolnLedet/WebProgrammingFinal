@@ -179,9 +179,6 @@ export default function Profile() {
       </dialog>
 
       {/* Greeting & TopBar */}
-      <h1 className={styles.welcome}>
-        Welcome, {user.name || user.email}!
-      </h1>
       <TopBar
         title="YOUR PLAYLISTS"
         changeLogStatus={() => signIn()}

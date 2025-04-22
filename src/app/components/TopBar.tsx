@@ -16,7 +16,7 @@ export default function TopBar({
   changeLogStatus: (loggedIn: boolean) => void
 }) {
   const router = useRouter()
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
 
   const [isOpened, setIsOpened] = useState(false)
   const ref = useRef<HTMLDialogElement>(null)
@@ -73,25 +73,31 @@ export default function TopBar({
       </p>
     </div>
   )
+  const user = session?.user
 
   const loggedIn = (
-    <div className={styles.links}>
-      <p
-        onClick={() => router.push('/profile')}
-        className={styles.p_link}
-      >
-        My Account
-      </p>
-      <p>|</p>
-      <p
-        onClick={() => {
-          signOut({ callbackUrl: '/' })
-          changeLogStatus(false)
-        }}
-        className={styles.p_link}
-      >
-        Logout
-      </p>
+    <div className={styles.message}>
+      <h1>
+        Welcome, {user?.name || user?.email}!
+      </h1>
+      <div className={styles.links}>
+        <p
+          onClick={() => router.push('/profile')}
+          className={styles.p_link}
+        >
+          My Account
+        </p>
+        <p>|</p>
+        <p
+          onClick={() => {
+            signOut({ callbackUrl: '/' })
+            changeLogStatus(false)
+          }}
+          className={styles.p_link}
+        >
+          Logout
+        </p>
+      </div>
     </div>
   )
 

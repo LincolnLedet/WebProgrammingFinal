@@ -36,7 +36,7 @@ export default function PlaylistPage() {
     const playlistUserName = searchParams.get('userName') || 'Unknown User';
     const category = searchParams.get('genre') || 'unknown';
     const playlistGenre = categoryTitles[category] || 'Unknown Genre';
-    const user = session?.user?.name || 'Me';
+    const user = session?.user?.name || null;
 
     const [playlistSongs, setPlaylistSongs] = useState<Song[]>([]);
     const [searchResults, setSearchResults] = useState<Song[]>([]);
@@ -68,6 +68,9 @@ export default function PlaylistPage() {
 
 
     const addSong = async (song: Song) => {
+      if (user == null) {
+        return
+      }
         const alreadyExists = playlistSongs.some((s) => s.id === song.id);
         if (!alreadyExists) {
           setPlaylistSongs((prev) => [...prev, song]);
@@ -93,10 +96,11 @@ export default function PlaylistPage() {
           }
         }
       };
-      
-      
 
     const removeSong = async (song: Song) => {
+      if (user == null) {
+        return
+      }
       try {
         // 1) Tell the server to remove it
         const res = await fetch('/api/playlists/addsong', {
@@ -187,9 +191,11 @@ export default function PlaylistPage() {
                     <div className={styles.spotify_connect}>
                         <p className={styles.spotify_text}>Press to connect to Spotify</p>
                         <button
-                          onClick={() =>
-                            signIn('spotify', { callbackUrl: window.location.href })
-                          }
+                          onClick={() => {
+                            if (!session?.accessToken) {
+                              signIn('spotify')
+                            }
+                          }}
                           className={styles.spotify_button}
                         >
                           <Image
