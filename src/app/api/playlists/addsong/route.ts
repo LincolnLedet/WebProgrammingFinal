@@ -45,11 +45,6 @@ export async function DELETE(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
-  // const session = await getServerSession(authOptions)
-  // if (!session) {
-  //   return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
-  // }
-
   const playlistName = req.nextUrl.searchParams.get('playlistName')
   if (!playlistName) {
     return NextResponse.json({ error: 'Missing playlistName' }, { status: 400 })
