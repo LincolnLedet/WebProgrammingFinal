@@ -76,9 +76,12 @@ export default function TopBar({
 
   const loggedIn = (
     <div className={styles.links}>
-      <Link href="/profile" className={styles.link}>
+      <p
+        onClick={() => router.push('/profile')}
+        className={styles.p_link}
+      >
         My Account
-      </Link>
+      </p>
       <p>|</p>
       <p
         onClick={() => {

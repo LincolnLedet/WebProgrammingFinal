@@ -4,7 +4,6 @@ import { useSession, signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import TopBar from '../components/TopBar'
 import Image from 'next/image'
-import study from '../images/studymusic.png'
 import styles from './profile.module.css'
 
 
@@ -60,7 +59,7 @@ export default  function Profile() {
   if (!session) {
     return (
       <div className={styles.main_body}>
-        <TopBar isLoggedIn={false} title="YOUR PLAYLISTS" changeLogStatus={() => {}} />
+        <TopBar title="YOUR PLAYLISTS" changeLogStatus={() => {}} />
         <hr />
         <p style={{ padding: 20 }}>
           You must{' '}
