@@ -31,7 +31,7 @@ export default function Home() {
                 <Link href = "/playlistsGenre/all">
                     <div className={styles.card_holder}>
                         <Image
-                            src={studying}
+                            src={temp}
                             height={height}
                             width={width}
                             alt="All Music button"
