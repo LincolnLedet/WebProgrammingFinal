@@ -50,21 +50,21 @@ export default function PlaylistPage() {
     }, [session, router])
 
     useEffect(() => {
-        if (!session) return
-    
-        ;(async () => {
-          try {
-            const res = await fetch(
-              `/api/playlists/addsong?playlistName=${encodeURIComponent(playlistName)}`
-            )
-            if (!res.ok) throw new Error(res.statusText)
-            const data: Song[] = await res.json()
-            setPlaylistSongs(data)
-          } catch (err) {
-            console.error('❌ load playlist songs:', err)
-          }
+        (async () => {
+            try {
+                const res = await fetch(
+                    `/api/playlists/addsong?playlistName=${encodeURIComponent(playlistName)}`
+                )
+                console.log('/api/playlists/addsong?playlistName=${encodeURIComponent(playlistName)}')
+                console.log(res.json)
+                if (!res.ok) throw new Error(res.statusText)
+                const data: Song[] = await res.json()
+                setPlaylistSongs(data)
+            } catch (err) {
+                console.error('❌ load playlist songs:', err)
+            }
         })()
-      }, [session, playlistName])
+    }, [session, playlistName])
 
 
     const addSong = async (song: Song) => {

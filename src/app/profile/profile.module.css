@@ -29,7 +29,7 @@
 /* Modal body styling */
 .modal_body {
     background-image: linear-gradient(rgb(134, 28, 28), black);
-    height: 50vh;
+    height: 60vh;
     width: 50vw;
     padding: 10px;
     font-weight: bold;
@@ -43,6 +43,7 @@
 .playlist_form {
     position: relative;
     top: 25%;
+    
 }
 
 .playlist_form input {

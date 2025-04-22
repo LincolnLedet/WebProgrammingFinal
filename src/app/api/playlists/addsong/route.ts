@@ -59,7 +59,7 @@ export async function GET(req: NextRequest) {
   const db = client.db()  // defaults to "test" unless overridden in URI
   const playlist = await db
     .collection('playlists')
-    .findOne({ userEmail: session.user.email, name: playlistName })
+    .findOne({name: playlistName })
 
   if (!playlist) {
     return NextResponse.json({ error: 'Playlist not found' }, { status: 404 })
