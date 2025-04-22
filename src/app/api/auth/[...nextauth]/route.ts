@@ -16,36 +16,6 @@ export const authOptions: NextAuthOptions = {
 
   providers: [
     // 👤 Credentials-based login (email + password)
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        email: { label: "Email", type: "text" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          return null
-        }
-
-        // Find user by email in the MongoDB users collection
-        const user = await db.collection("users").findOne({ email: credentials.email })
-
-        // Check if user exists and password is correct
-        if (user && user.hashedPassword) {
-          const passwordMatch = await bcrypt.compare(credentials.password, user.hashedPassword)
-          if (passwordMatch) {
-            return {
-              id: user._id.toString(),
-              email: user.email,
-              name: user.name || user.email,
-            }
-          }
-        }
-
-        // If login fails, return null
-        return null
-      },
-    }),
 
     // Spotify login (can be used to link to an existing account)
     SpotifyProvider({
