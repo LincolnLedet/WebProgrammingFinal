@@ -17,5 +17,13 @@ export async function GET(req: NextRequest) {
 
   const userPlaylists = await playlists.find({ userEmail }).toArray()
 
+  // Convert ObjectId to string
+  const transformed = userPlaylists.map(pl => ({
+    ...pl,
+    _id: pl._id.toString(),
+  }))
+  
+  return NextResponse.json(transformed)
+
   return NextResponse.json(userPlaylists)
 }
