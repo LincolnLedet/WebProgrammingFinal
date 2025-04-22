@@ -100,6 +100,7 @@ export default function Profile() {
 
   return (
     <div className={styles.main_body}>
+<<<<<<< HEAD
       {/* Connect Spotify */}
       <div style={{ padding: '1rem' }}>
         {!user.spotifyId ? (
@@ -118,6 +119,9 @@ export default function Profile() {
       )}
 
       {/* Add‑Playlist Modal */}
+=======
+      {/* — Add‑Playlist Modal — */}
+>>>>>>> f75ba2d1ecb7ad58e46c57eade0335133ff0ab15
       <dialog ref={dialogRef} className={styles.dialog}>
         <div className={styles.modal_body}>
           <button className={styles.close} onClick={() => setIsOpened(false)}>
@@ -164,7 +168,6 @@ export default function Profile() {
         Welcome, {user.name || user.email}!
       </h1>
       <TopBar
-        isLoggedIn={true}
         title="YOUR PLAYLISTS"
         changeLogStatus={() => signIn()}
       />
@@ -176,9 +179,13 @@ export default function Profile() {
           <li className={styles.add_playlist} onClick={() => setIsOpened(true)}>
             <p>Add Playlist</p>
           </li>
-          {userPlaylists.map(pl => (
+          {userPlaylists.map((pl, index) => (
             <li
+<<<<<<< HEAD
               key={pl._id}
+=======
+              key={index}
+>>>>>>> f75ba2d1ecb7ad58e46c57eade0335133ff0ab15
               className={styles.card_holder}
               onClick={() =>
                 router.push(`/playlist-page?name=${encodeURIComponent(pl.name)}&image=${encodeURIComponent(pl.picture)}`)

@@ -7,7 +7,7 @@ import temp from '../images/tempG.png'
 import { useRouter } from 'next/navigation'
 import albumcover from '../images/albumcover.png'
 import spotify from '../images/SpotifyConnect.png'
-import { useSession } from 'next-auth/react';
+import { useSession, signIn } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation';
 
 interface Song {
@@ -168,19 +168,24 @@ const removeSong = async (song: Song) => {
 
     return (
         <div className={styles.main_body}>
-            <TopBar isLoggedIn={true} title={"DAWGIFY"} changeLogStatus={setIsLoggedIn}/>
+            <TopBar title={"DAWGIFY"} changeLogStatus={setIsLoggedIn}/>
             <hr></hr>
             <section className={styles.body}>
                 <div className={styles.left_half}> 
                     <div className={styles.spotify_connect}>
                         <p className={styles.spotify_text}>Press to connect to Spotify</p>
-                        <button className={styles.spotify_button}>
-                            <Image
-                                src={spotify}
-                                alt="Connect to Spotify"
-                                width={300}
-                                height={100}
-                            />
+                        <button
+                          onClick={() =>
+                            signIn('spotify', { callbackUrl: window.location.href })
+                          }
+                          className={styles.spotify_button}
+                        >
+                          <Image
+                              src={spotify}
+                              alt="Connect to Spotify"
+                              width={300}
+                              height={100}
+                          />
                         </button>
                     </div>
                     <div className={styles.searchbar}>
