@@ -23,21 +23,21 @@ export default function Home() {
 
     return (
         <div className={styles.main_body}>
-            <TopBar isLoggedIn={isLoggedIn} title={"DAWGIFY"} changeLogStatus={setIsLoggedIn}/>
+            <TopBar title={"DAWGIFY"} changeLogStatus={setIsLoggedIn}/>
             <hr></hr>
             <section className={styles.body}>
                 
                 <div className={styles.music_tabs}> 
-                <Link href = "/playlistsGenre/study">
+                <Link href = "/playlistsGenre/all">
                     <div className={styles.card_holder}>
                         <Image
                             src={studying}
                             height={height}
                             width={width}
-                            alt="Study Music button"
+                            alt="All Music button"
                             className={styles.card}
                         />
-                        <p className={styles.text_in_image}> Study Music </p>
+                        <p className={styles.text_in_image}> All Music </p>
                     </div>
                     </Link>
                     <Link href = "/playlistsGenre/study">

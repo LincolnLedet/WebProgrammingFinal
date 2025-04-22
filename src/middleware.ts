@@ -13,5 +13,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/profile', '/api/playlists/addsong/:path', '/api/playlists/delete', '/api/playlists/save', '/api/playlists/user'],
+    matcher: ['/profile', '/api/playlists/addsong', '/api/playlists/delete', '/api/playlists/save', '/api/playlists/user'],
 }
