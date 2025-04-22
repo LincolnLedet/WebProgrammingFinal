@@ -53,7 +53,7 @@ export default function PlaylistPage() {
         (async () => {
             try {
                 const res = await fetch(
-                    `/api/playlists/addsong?playlistName=${encodeURIComponent(playlistName)}`
+                    `/api/playlists?playlistName=${encodeURIComponent(playlistName)}`
                 )
                 console.log('/api/playlists/addsong?playlistName=${encodeURIComponent(playlistName)}')
                 console.log(res.json)

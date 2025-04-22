@@ -12,7 +12,12 @@ export async function GET(req: NextRequest) { // saves whole playlist
   const db = client.db() // getting mongo database labled "test"
   const playlists = db.collection('playlists')
 
-  const genrePlaylists = await playlists.find({ genre }).toArray()
+  let genrePlaylists = []
+  if (genre === 'all') {
+    genrePlaylists = await playlists.find().toArray()
+  } else {
+    genrePlaylists = await playlists.find({ genre }).toArray()
+  }
 
   // Convert ObjectId to string
   const transformed = genrePlaylists.map(pl => ({

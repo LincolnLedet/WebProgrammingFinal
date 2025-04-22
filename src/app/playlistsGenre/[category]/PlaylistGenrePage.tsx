@@ -12,7 +12,8 @@ const categoryTitles: Record<string, string> = {
     study: 'Study Music',
     game: 'Game Day tunes',
     club: 'Club Music',
-    walking: 'Walking music'
+    walking: 'Walking music',
+    all: 'All playlists'
 };
 
 interface Playlist {
