@@ -100,28 +100,7 @@ export default function Profile() {
 
   return (
     <div className={styles.main_body}>
-<<<<<<< HEAD
-      {/* Connect Spotify */}
-      <div style={{ padding: '1rem' }}>
-        {!user.spotifyId ? (
-          <button onClick={() => signIn('spotify', { callbackUrl: '/profile' })}>
-            Connect Spotify
-          </button>
-        ) : (
-          <p>Spotify Connected!</p>
-        )}
-      </div>
-
-      {!session?.accessToken && (
-        <p style={{ color: 'red', textAlign: 'center', fontWeight: 'bold' }}>
-          Spotify not connected.
-        </p>
-      )}
-
-      {/* Add‑Playlist Modal */}
-=======
       {/* — Add‑Playlist Modal — */}
->>>>>>> f75ba2d1ecb7ad58e46c57eade0335133ff0ab15
       <dialog ref={dialogRef} className={styles.dialog}>
         <div className={styles.modal_body}>
           <button className={styles.close} onClick={() => setIsOpened(false)}>
@@ -181,11 +160,7 @@ export default function Profile() {
           </li>
           {userPlaylists.map((pl, index) => (
             <li
-<<<<<<< HEAD
-              key={pl._id}
-=======
               key={index}
->>>>>>> f75ba2d1ecb7ad58e46c57eade0335133ff0ab15
               className={styles.card_holder}
               onClick={() =>
                 router.push(`/playlist-page?name=${encodeURIComponent(pl.name)}&image=${encodeURIComponent(pl.picture)}`)
