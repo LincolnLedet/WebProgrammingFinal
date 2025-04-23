@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import TopBar from '../components/TopBar'
 import Image from 'next/image'
 import styles from './profile.module.css'
+import PlaylistCard from '@/app/components/PlaylistCard';
 
 interface Playlist {
   _id: number
@@ -17,6 +18,7 @@ interface Playlist {
 export default function Profile() {
   const { data: session, status } = useSession()
   const router = useRouter()
+  const setIsLoggedIn = (value:boolean) => value;
 
   // ✅ All hooks are declared before any returns
   const [msg, setMsg] = useState("");
@@ -181,7 +183,7 @@ export default function Profile() {
       {/* Greeting & TopBar */}
       <TopBar
         title="YOUR PLAYLISTS"
-        changeLogStatus={() => signIn()}
+        changeLogStatus={setIsLoggedIn}
       />
       <hr />
 
@@ -192,23 +194,7 @@ export default function Profile() {
             <p>Add Playlist</p>
           </li>
           {userPlaylists.map((pl, index) => (
-            <li
-              key={index}
-              className={styles.card_holder}
-            >
-              <Image
-                src={pl.picture}
-                width={1210}
-                height={170}
-                alt={pl.name}
-                className={styles.card}
-                onClick={() =>
-                  router.push(`/playlist-page?name=${encodeURIComponent(pl.name)}&image=${encodeURIComponent(pl.picture)}&userName=${encodeURIComponent(pl.userName)}&genre=${encodeURIComponent(pl.genre)}`)
-                }
-              />
-              <p className={styles.text_in_image}>{pl.name}</p>
-              <button onClick={() => removePlaylist(pl)} className={styles.delete_button}> Delete </button>
-            </li>
+            <PlaylistCard index={index} playlist={pl} isButton={true} clickHandle={() => removePlaylist(pl)} key={pl._id}></PlaylistCard>
           ))}
         </ul>
       </section>

@@ -5,7 +5,7 @@ import styles from './PlaylistGenrePage.module.css';
 import TopBar from '../../components/TopBar';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image'
-import Link from 'next/link';
+import PlaylistCard from '@/app/components/PlaylistCard';
 
 const categoryTitles: Record<string, string> = {
     workout: 'Workout music',
@@ -56,22 +56,7 @@ export default function PlaylistCategoryPage() { //uses router and [category] di
         <h1 className={styles.title}>{title}</h1>
         <div className={styles.cardContainer}>
             {playlists.map((pl, index) => (
-              <li
-                key={index}
-                className={styles.card_holder}
-                onClick={() =>
-                  router.push(`/playlist-page?name=${encodeURIComponent(pl.name)}&image=${encodeURIComponent(pl.picture)}&userName=${encodeURIComponent(pl.userName)}&genre=${encodeURIComponent(pl.genre)}`)
-                }
-              >
-                <Image
-                  src={pl.picture}
-                  width={1210}
-                  height={170}
-                  alt={pl.name}
-                  className={styles.card}
-                />
-                <p className={styles.text_in_image}>{pl.name}</p>
-              </li>
+              <PlaylistCard index={index} playlist={pl} isButton={false} clickHandle={() => null} key={pl._id}></PlaylistCard>
             ))}
         </div>
       </div>
