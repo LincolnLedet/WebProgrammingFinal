@@ -18,13 +18,13 @@ export default function Profile() {
   const { data: session, status } = useSession()
   const router = useRouter()
 
-  // ✅ All hooks are declared before any returns
+  // All hooks are declared before any returns
   const [msg, setMsg] = useState("");
   const [name, setName] = useState('')
   const [pictureSrc, setPictureSrc] = useState('')
   const [userPlaylists, setUserPlaylists] = useState<Playlist[]>([])
   const [isOpened, setIsOpened] = useState(false)
-  const [genre, setGenre] = useState('') // ← moved up
+  const [genre, setGenre] = useState('') 
   const dialogRef = useRef<HTMLDialogElement>(null)
 
   // Fetch user playlists

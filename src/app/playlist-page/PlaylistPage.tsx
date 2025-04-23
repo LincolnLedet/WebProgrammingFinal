@@ -10,6 +10,7 @@ import spotify from '../images/SpotifyConnect.png'
 import { useSession, signIn } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation';
 
+// Structure of a song object
 interface Song {
     id: number,
     name:string,
@@ -18,6 +19,7 @@ interface Song {
     albumPicture: string;
 }
 
+// Mapping for playlist genre 
 const categoryTitles: Record<string, string> = {
   workout: 'Workout music',
   study: 'Study Music',
@@ -28,9 +30,11 @@ const categoryTitles: Record<string, string> = {
 };
 
 export default function PlaylistPage() {
-    const { data: session } = useSession();
+    const { data: session } = useSession(); // Get session data from NextAuth
     const router = useRouter();
     const searchParams = useSearchParams();
+
+    // Extract playlist data from query parameters or assign default values
     const playlistName = searchParams.get('name') || 'Unknown Title';
     const playlistImage = searchParams.get('image') || albumcover.src;
     const playlistUserName = searchParams.get('userName') || 'Unknown User';
@@ -38,11 +42,13 @@ export default function PlaylistPage() {
     const playlistGenre = categoryTitles[category] || 'Unknown Genre';
     const user = session?.user?.name || null;
 
+    // Local state variables
     const [playlistSongs, setPlaylistSongs] = useState<Song[]>([]);
     const [searchResults, setSearchResults] = useState<Song[]>([]);
     const [query, setQuery] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(true)
 
+    
     useEffect(()=> {
         if (!isLoggedIn) {
             router.push('/signin')
@@ -66,7 +72,7 @@ export default function PlaylistPage() {
         })()
     }, [session, playlistName])
 
-
+    // Adds a new song to the playlist (UI + backend)
     const addSong = async (song: Song) => {
       if (user == null) {
         return
@@ -102,7 +108,7 @@ export default function PlaylistPage() {
         return
       }
       try {
-        // 1) Tell the server to remove it
+        // Tell the server to remove it
         const res = await fetch('/api/playlists/addsong', {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
@@ -116,7 +122,7 @@ export default function PlaylistPage() {
           return
         }
 
-        // 2) Update the UI state
+        // Update the UI state
         setPlaylistSongs((prev) =>
           prev.filter((s) => s.id !== song.id)
         )
@@ -125,6 +131,7 @@ export default function PlaylistPage() {
       }
     }
 
+    // Queries Spotify API
     const sendQuery = async () => {
         if (!session?.accessToken || !query) return;
       
