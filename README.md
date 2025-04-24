@@ -7,6 +7,22 @@ Lincoln Ledet,
 Sean Mcgrath,
 Kevin Zburlea
 
+DAWGIFY:
+
+What is DAWGIFY?
+  DAWGIFY is a community playlist sharer for UGA students that allows them to share playlists from a few different genres that relate to UGA activities. 
+
+How does it work?
+  Users are able to register an account in DAWGIFY and connect it to their Spotify account, this is done using the Spotify API. Users without an account can view the     
+community playlists but are unable to add/delete songs from playlists. Once a user has created an account, they are able to upload a playlist with an image, genre, and 
+name. They can then access that playlist and search for songs from Spotify to add to their playlist.
+
+Playlist Information:
+  Once a user has created a playlist and added songs, they can either press the TopBar to navigate to the community playlist section or the "Get Started" button on the splash page. Here they can navigate through the different genres to view playlists that are apart of that genre or press the view all button to view all the playlists currently posted to the community.
+
+Important Information:
+  Because the Spotify API requires a 6-week confirmation period to open your API/website to the public, DAWGIFY is currently operating in developer mode. Because of this the developers have to add a users spotify account authorization to be able to search for songs.
+
 Project Goal
 Your team will design and build a full-stack web application using React, Next.js, Nodejs, MongoDB, and implement authentication and authorization. The final product should not only demonstrate your ability to implement these technical requirements but also solve a problem or provide a unique service to UGA students.
 
